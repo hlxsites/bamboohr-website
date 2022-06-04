@@ -877,6 +877,7 @@ export async function loadFragment(path) {
   const main = document.createElement('main');
   if (resp.ok) {
     main.innerHTML = await resp.text();
+    buildAutoBlocks(main);
     decorateMain(main);
     await loadBlocks(main);
   }
@@ -935,3 +936,21 @@ export function insertNewsletterForm(elem, submitCallback) {
     a.replaceWith(formDiv);
   });
 }
+
+function enableSoftNav() {
+  document.body.addEventListener('click', async (evt) => {
+    const a = evt.target.closest('a');
+    if (a) {
+      if (a.href) {
+        const href = new URL(a.href);
+        if (href.pathname.startsWith('/blog/') && href.hostname === window.location.hostname) {
+          evt.preventDefault();
+          const main = await loadFragment(a.getAttribute('href'));
+          document.querySelector('main').replaceWith(main);
+        }
+      }
+    }
+  });
+}
+
+enableSoftNav();
