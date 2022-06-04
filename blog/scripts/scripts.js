@@ -675,8 +675,8 @@ function buildArticleHeader(main) {
     const updatedDate = getMetadata('updated-date') || '';
     const readtime = getMetadata('read-time');
     const category = getMetadata('category');
-    const h1 = document.querySelector('h1');
-    const picture = document.querySelector('h1 + p > picture');
+    const h1 = main.querySelector('h1');
+    const picture = main.querySelector('h1 + p > picture');
     if (author && publicationDate) {
       document.body.classList.add('blog-post');
       const section = document.createElement('div');
@@ -937,6 +937,23 @@ export function insertNewsletterForm(elem, submitCallback) {
   });
 }
 
+/**
+ * Retrieves the content of a metadata tag.
+ * @param {string} name The metadata name (or property)
+ * @returns {string} The metadata value
+ */
+export function setMetadata(name, content) {
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = document.head.querySelector(`meta[${attr}="${name}"]`);
+  if (meta) meta.content = content;
+  else {
+    const newmeta = document.createElement('meta');
+    newmeta.setAttribute(attr, name);
+    newmeta.content = content;
+    document.head.append(newmeta);
+  }
+}
+
 function enableSoftNav() {
   document.body.addEventListener('click', async (evt) => {
     const a = evt.target.closest('a');
@@ -945,7 +962,14 @@ function enableSoftNav() {
         const href = new URL(a.href);
         if (href.pathname.startsWith('/blog/') && href.hostname === window.location.hostname) {
           evt.preventDefault();
-          const main = await loadFragment(a.getAttribute('href'));
+          document.body.className = 'appear';
+          const [meta] = await lookupArticles([href.pathname]);
+          setMetadata('read-time', meta.readTime);
+          setMetadata('author', meta.author);
+          setMetadata('publication-date', meta.date);
+          setMetadata('category', meta.category);
+          document.title = meta.title;
+          const main = await loadFragment(href.pathname);
           document.querySelector('main').replaceWith(main);
         }
       }
