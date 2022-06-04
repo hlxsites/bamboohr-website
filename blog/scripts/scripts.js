@@ -971,6 +971,7 @@ function enableSoftNav() {
           document.title = meta.title;
           const main = await loadFragment(href.pathname);
           document.querySelector('main').replaceWith(main);
+          window.history.pushState({}, '', href.pathname);
         }
       }
     }
