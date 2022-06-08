@@ -1,36 +1,48 @@
-.form-container {
+main .form-container {
   font-size: 15px;
   line-height: 24px;
   font-weight: 700;
   color: #87888B;
 }
 
-.form-container label {
+main .form-container label {
   display: block;
 }
 
-.form-container .required {
+main .form-container .required {
   color: #790000;
   margin-left: 4px;
 }
 
-.form-container span.error {
+main .form-container span.error {
   color: #790000;
 }
 
-
-.form-container form > div {
+main .form-container form > div {
   margin: 16px 0;
 }
 
-.form-container select,
-.form-container textarea, 
-.form-container input {
+main .form-container select,
+main .form-container textarea, 
+main .form-container input {
   margin-left: 1px;
   width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid rgb(193, 193, 195);
+  font-size: 14px;
+  line-height: 21px;
+  padding: 5px 4px;
+  margin-top: 8px;
 }
 
-.form-container option {
+main .form-container input:hover,
+main .form-container textarea:hover,
+main .form-container select:hover {
+    border-color: rgb(90, 92, 96);
+}
+
+main .form-container option {
   padding: 2px;
   display: block;
   box-sizing: border-box;
