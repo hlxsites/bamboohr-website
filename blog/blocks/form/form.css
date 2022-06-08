@@ -1,0 +1,37 @@
+.form-container {
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #87888B;
+}
+
+.form-container label {
+  display: block;
+}
+
+.form-container .required {
+  color: #790000;
+  margin-left: 4px;
+}
+
+.form-container span.error {
+  color: #790000;
+}
+
+
+.form-container form > div {
+  margin: 16px 0;
+}
+
+.form-container select,
+.form-container textarea, 
+.form-container input {
+  margin-left: 1px;
+  width: 100%;
+}
+
+.form-container option {
+  padding: 2px;
+  display: block;
+  box-sizing: border-box;
+}

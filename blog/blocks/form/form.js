@@ -1,11 +1,16 @@
 function createSelect(fd) {
   const select = document.createElement('select');
   select.id = fd.Field;
+  if (fd.Mandatory === 'x') {
+    select.setAttribute('required', '');
+  }
+
   if (fd.Placeholder) {
     const ph = document.createElement('option');
     ph.textContent = fd.Placeholder;
     ph.setAttribute('selected', '');
     ph.setAttribute('disabled', '');
+    ph.value = '';
     select.append(ph);
   }
   fd.Options.split(',').forEach((o) => {
@@ -43,7 +48,9 @@ async function submitForm(form) {
 }
 
 function createButton(fd) {
-  const button = document.createElement('button');
+  const button = document.createElement('a');
+  button.classList.add('button');
+  button.href = '';
   button.textContent = fd.Label;
   if (fd.Field === 'submit') {
     button.addEventListener('click', async (event) => {
@@ -120,6 +127,10 @@ function createLabel(fd) {
   const label = document.createElement('label');
   label.setAttribute('for', fd.Field);
   label.textContent = fd.Label;
+
+  if (fd.Mandatory === 'x') {
+    label.insertAdjacentHTML('beforeend', '<span class="required">*</span>');
+  }
   return label;
 }
 
