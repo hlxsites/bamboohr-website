@@ -56,7 +56,20 @@ function createButton(fd) {
         return;
       }
 
-      // window.location.href = fd.Extra;
+      const resp = await fetch(button.closest('form').dataset.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: payload }),
+      });
+
+      if (resp.ok) {
+        window.location.href = fd.Extra;
+      } else {
+        // eslint-disable-next-line no-console
+        console.error(`Error submitting form: ${resp.status}`, resp);
+      }
     });
   }
   return button;
