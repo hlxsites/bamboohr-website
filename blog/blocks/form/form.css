@@ -29,25 +29,25 @@ main .form-container input {
   width: 100%;
   background-color: white;
   border-radius: 4px;
-  border: 1px solid rgb(193, 193, 195);
+  border: 1px solid rgb(193 193 195);
   font-size: 14px;
   line-height: 21px;
   padding: 5px 4px;
   margin-top: 8px;
 }
 
+main .form-container textarea {
+  height: 160px;
+}
+
 main .form-container input:hover,
 main .form-container textarea:hover,
 main .form-container select:hover {
-    border-color: rgb(90, 92, 96);
+    border-color: rgb(90 92 96);
 }
 
 main .form-container option {
   padding: 2px;
   display: block;
   box-sizing: border-box;
-}
-
-main .form-container textarea {
-  height: 160px;
 }
