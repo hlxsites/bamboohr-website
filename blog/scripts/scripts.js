@@ -551,7 +551,7 @@ initHlx();
  * ------------------------------------------------------------
  */
 
-const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'featured-articles']; // add your LCP blocks to the list
 const RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 sampleRUM('top');
@@ -868,7 +868,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => import('./delayed.js'), 4000);
   // load anything that can be postponed to the latest here
 }
 

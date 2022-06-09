@@ -14,4 +14,12 @@ export default async function decorate(block) {
   styles.forEach((style, i) => {
     if (block.children[i]) block.children[i].classList.add(style);
   });
+
+  const $teconsent = document.createElement('div');
+  $teconsent.id = 'teconsent';
+  block.querySelector('a[href^="https://consent-pref.trustarc.com/"]').replaceWith($teconsent);
+
+  const $consent = document.createElement('div');
+  $consent.id = 'consent-banner';
+  block.after($consent);
 }

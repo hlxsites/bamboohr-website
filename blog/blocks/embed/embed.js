@@ -153,7 +153,7 @@ const loadEmbed = (block) => {
   }
 
   const a = block.querySelector('a');
-  const figure = buildFigure(block.firstChild.firstChild);
+  const figure = buildFigure(block.firstElementChild.firstElementChild);
 
   if (a) {
     const url = new URL(a.href.replace(/\/$/, ''));

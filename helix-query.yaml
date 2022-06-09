@@ -50,3 +50,74 @@ indices:
         select: none
         value: |
           parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+
+
+  marketplace:
+    include:
+      - '/marketplace/**'
+    target: /marketplace/query-index
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: |
+          match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      description:
+        select: head > meta[name="description"]
+        value: |
+          attribute(el, 'content')
+      category:
+        select: head > meta[name="category"]
+        value: |
+          attribute(el, 'content')
+      robots:
+        select: head > meta[name="robots"]
+        value: |
+          attribute(el, 'content')
+      lastModified:
+        select: none
+        value: |
+          parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+      subCategory:
+        select: head > meta[name="sub-category"]
+        value: |
+          attribute(el, 'content')
+      publisher:
+        select: head > meta[name="publisher"]
+        value: |
+          attribute(el, 'content')
+      logo:
+        select: head > meta[name="logo"]
+        value: |
+          attribute(el, 'content')
+      level:
+        select: head > meta[name="level"]
+        value: |
+          attribute(el, 'content')
+      listingType:
+        select: head > meta[name="listing-type"]
+        value: |
+          attribute(el, 'content')
+      discoverApps:
+        select: head > meta[name="discover-apps"]
+        value: |
+          attribute(el, 'content')
+      businessSize:
+        select: head > meta[name="business-size"]
+        value: |
+          attribute(el, 'content')
+      dataFlow:
+        select: head > meta[name="data-flow"]
+        value: |
+          attribute(el, 'content')
+      industryServed:
+        select: head > meta[name="industry-served"]
+        value: |
+          attribute(el, 'content')
+      locationRestrictions:
+        select: head > meta[name="location-restrictions"]
+        value: |
+          attribute(el, 'content')

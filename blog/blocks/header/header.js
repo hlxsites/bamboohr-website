@@ -109,7 +109,7 @@ export default async function decorate(block) {
         modal.className = 'header-search-modal';
         modal.id = 'header-search-modal';
         modal.innerHTML = '<div class="header-search-close"></div>';
-        const fragment = await loadFragment('/tools/search');
+        const fragment = await loadFragment('/blog/fixtures/search');
         modal.append(fragment);
         block.append(modal);
         modal.classList.add('visible');

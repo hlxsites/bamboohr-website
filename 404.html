@@ -1,22 +1,31 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BambooHR Blog | Not Found </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/blog/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
-    <link rel="stylesheet" href="/blog/styles/styles.css">
-    <link rel="icon" href="data:,">
-  </head>
-  <body>
-    <header></header>
-    <main>
-      <div style="text-align: center; margin-bottom: 128px;">
-          <h1>404 Error</h1>
-          <p>Whoops! It looks like this page got lost.</p>
-          <img src="/blog/styles/pudgy-woodsman-background.svg">
-      </div>
-    </main>
-    <footer></footer>
-  </body>
+
+<head>
+  <title>BambooHR Blog | Not Found </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/blog/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
+  <script type="module">
+    import { sampleRUM } from '/blog/scripts/scripts.js';
+
+    window.addEventListener('load', () => {
+      sampleRUM('404', { source: document.referrer, target: window.location.href });
+    });
+  </script>
+  <link rel="stylesheet" href="/blog/styles/styles.css">
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div style="text-align: center; margin-bottom: 128px;">
+      <h1>404 Error</h1>
+      <p>Whoops! It looks like this page got lost.</p>
+      <img src="/blog/styles/pudgy-woodsman-background.svg">
+    </div>
+  </main>
+  <footer></footer>
+</body>
+
 </html>
