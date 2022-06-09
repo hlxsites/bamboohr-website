@@ -1,8 +1,14 @@
 export default async function decorate(block) {
   block.textContent = '';
   let filters = await getFilters();
-  filters.forEach((filter) => {
-    block.append(createFilter(filter, "filter"));
+  let planTypes = uniqueFilters(filters, 'planType');
+  console.log(planTypes);
+  let productAreas = uniqueFilters(filters, 'productArea');
+  planTypes.forEach((planType) => {
+    block.append(createFilter(planType, "filterPlanType"));
+  });
+  productAreas.forEach((productArea) => {
+    block.append(createFilter(productArea, "filterProductArea"));
   });
 }
 
@@ -16,7 +22,11 @@ export function createFilter(filter, classPrefix) {
   const card = document.createElement('div');
   card.className = `${classPrefix}-card`;
   card.innerHTML = `<div class="${classPrefix}-header">
-    <span class="${classPrefix}-plan-type">${filter.planType}</span> 
+    <input type="checkbox" class="${classPrefix}-plan-type" id="${filter}">${filter}</input> 
     </div>`;
   return (card);
+}
+
+function uniqueFilters(array, key) {
+  return [...new Map(array.map((x) => [x[key], x])).values()];
 }
